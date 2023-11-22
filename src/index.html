@@ -1,19 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blusas</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desenvolvedor M3</title>
-  <link rel="stylesheet" href="main.css" />
-</head>
+  <body>
+    <header>
+      <div class="header-container">
+        <div class="logo">
+          <img class="header-logo" src="./img/logo-m3.png" alt="logo m3" />
+        </div>
 
-<body>
+        <div class="carrinho">
+          <img src="./img/shopping-cart.png" alt="shopping-cart" />
+          <div class="numero-carrinho">0</div>
+        </div>
+      </div>
+    </header>
+    <main class="main-content">
+      <div class="main-top-wrapper">
+        <h1>Blusas</h1>
+        <div class="dropdown">
+          <span>Ordenar por: </span>
 
-</body>
-<h1>Desafio m3</h1>
+          <img src="./img/Vector 1.svg" />
+          <ul class="drop">
+            <li class="dropdown-content active">Mais recentes</li>
+            <li class="dropdown-content">Menor preço</li>
+            <li class="dropdown-content">Maior preço</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <aside class="aside">
+          <div class="aside-container">
+            <section class="cores">
+              <h3>CORES</h3>
 
-<script src="bundle.js"></script>
+              <ul class="lista-container">
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Amarelo"
+                    />
+                    <p>Amarelo</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Azul"
+                    />
+                    <p>Azul</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Branco"
+                    />
+                    <p>Branco</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Cinza"
+                    />
+                    <p>Cinza</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Laranja"
+                    />
+                    <p>Laranja</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Verde"
+                    />
+                    <p>Verde</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Vermelho"
+                    />
+                    <p>Vermelho</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Preto"
+                    />
+                    <p>Preto</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Rosa"
+                    />
+                    <p>Rosa</p>
+                  </label>
+                </li>
+                <li class="lista">
+                  <label class="checkbox-container">
+                    <input
+                      type="checkbox"
+                      class="inputcheck"
+                      name="cor"
+                      value="Vinho"
+                    />
+                    <p>Vinho</p>
+                  </label>
+                </li>
+              </ul>
+            </section>
+            <section class="tamanhos">
+              <h3>TAMANHOS</h3>
 
+              <div class="tamanho">
+                <label class="tamanho-item"
+                  >P<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="P"
+                /></label>
+
+                <label class="tamanho-item"
+                  >M<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="M"
+                /></label>
+
+                <label class="tamanho-item"
+                  >G<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="G"
+                /></label>
+
+                <label class="tamanho-item"
+                  >GG<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="GG"
+                /></label>
+
+                <label class="tamanho-item"
+                  >U<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="U"
+                /></label>
+
+                <label class="tamanho-item"
+                  >36<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="36"
+                /></label>
+
+                <label class="tamanho-item"
+                  >38<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="38"
+                /></label>
+
+                <label class="tamanho-item"
+                  >40<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="40"
+                /></label>
+
+                <label class="tamanho-item"
+                  >36<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="36"
+                /></label>
+
+                <label class="tamanho-item"
+                  >38<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="38"
+                /></label>
+
+                <label class="tamanho-item"
+                  >40<input
+                    type="checkbox"
+                    class="tamanhocheck"
+                    name="tamanho"
+                    value="40"
+                /></label>
+              </div>
+            </section>
+
+            <section class="precos">
+              <h3>FAIXA DE PREÇO</h3>
+
+              <ul class="precos-container">
+                <li class="preco">
+                  <label class="checkbox-container"
+                    ><input
+                      type="checkbox"
+                      class="checkboxs"
+                      name="price"
+                      value="50"
+                  /></label>
+                  <p>de R$0 até R$50</p>
+                </li>
+                <li class="preco">
+                  <label class="checkbox-container"
+                    ><input
+                      type="checkbox"
+                      class="checkboxs"
+                      name="price"
+                      value="150"
+                  /></label>
+                  <p>de R$51 até R$150</p>
+                </li>
+                <li class="preco">
+                  <label class="checkbox-container"
+                    ><input
+                      type="checkbox"
+                      class="checkboxs"
+                      name="price"
+                      value="300"
+                  /></label>
+                  <p>de R$151 até R$300</p>
+                </li>
+                <li class="preco">
+                  <label class="checkbox-container"
+                    ><input
+                      type="checkbox"
+                      class="checkboxs"
+                      name="price"
+                      value="500"
+                  /></label>
+                  <p>de R$301 até R$500</p>
+                </li>
+                <li class="preco">
+                  <label class="checkbox-container"
+                    ><input
+                      type="checkbox"
+                      class="checkboxs"
+                      name="price"
+                      value="501"
+                  /></label>
+                  <p>a partir de R$500</p>
+                </li>
+              </ul>
+            </section>
+            <!-- <div class="btn-busca">
+            <button onclick="" class="aplicar">APLICAR</button>
+            <button onclick="" class="limpar">LIMPAR</button>            
+          </div> -->
+          </div>
+        </aside>
+        <section class="produtos"></section>
+      </div>
+      <div class="btn">
+        <button class="carregar">CARREGAR MAIS</button>
+      </div>
+    </main>
+
+    <footer></footer>
+    <script>
+      const tamanhoItems = document.querySelectorAll(".tamanho-item");
+
+      tamanhoItems.forEach((item) => {
+        item.addEventListener("click", () => {
+          item.classList.toggle("border");
+          const checkbox = item.querySelector('input[type="checkbox"]');
+          checkbox.checked = !checkbox.checked;
+        });
+      });
+    </script>
+  </body>
+
+  <script src="bundle.js"></script>
+  <script src="ts/index.ts"></script>
 </html>

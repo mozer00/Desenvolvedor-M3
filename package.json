@@ -33,7 +33,9 @@
     "webpack": "^5.62.1"
   },
   "dependencies": {
+    "axios": "^1.6.2",
     "cross-env": "^7.0.3",
-    "json-server": "^0.17.0"
+    "json-server": "^0.17.0",
+    "run-all": "^1.0.1"
   }
 }
