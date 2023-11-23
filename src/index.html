@@ -24,6 +24,8 @@
     <main class="main-content">
       <div class="main-top-wrapper">
         <h1>Blusas</h1>
+        <button class="menu-btn-mobile">Filtrar</button>
+
         <div class="dropdown">
           <span>Ordenar por: </span>
 
@@ -39,14 +41,14 @@
         <aside class="aside">
           <div class="aside-container">
             <section class="cores">
-              <h3>CORES</h3>
+              <h3 class="title-colors">CORES</h3>
 
               <ul class="lista-container">
                 <li class="lista">
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-amarelo"
                       name="cor"
                       value="Amarelo"
                     />
@@ -57,7 +59,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-azul"
                       name="cor"
                       value="Azul"
                     />
@@ -68,7 +70,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-branco"
                       name="cor"
                       value="Branco"
                     />
@@ -79,7 +81,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-cinza"
                       name="cor"
                       value="Cinza"
                     />
@@ -90,7 +92,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-laranja"
                       name="cor"
                       value="Laranja"
                     />
@@ -101,7 +103,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-verde"
                       name="cor"
                       value="Verde"
                     />
@@ -112,7 +114,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-vermelho"
                       name="cor"
                       value="Vermelho"
                     />
@@ -123,7 +125,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-preto"
                       name="cor"
                       value="Preto"
                     />
@@ -134,7 +136,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-rosa"
                       name="cor"
                       value="Rosa"
                     />
@@ -145,7 +147,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck"
+                      class="inputcheck filtro-cor-vinho"
                       name="cor"
                       value="Vinho"
                     />
@@ -165,7 +167,6 @@
                     name="tamanho"
                     value="P"
                 /></label>
-
                 <label class="tamanho-item"
                   >M<input
                     type="checkbox"
@@ -223,47 +224,47 @@
                 /></label>
 
                 <label class="tamanho-item"
-                  >36<input
+                  >42<input
                     type="checkbox"
                     class="tamanhocheck"
                     name="tamanho"
-                    value="36"
+                    value="42"
                 /></label>
 
                 <label class="tamanho-item"
-                  >38<input
+                  >44<input
                     type="checkbox"
                     class="tamanhocheck"
                     name="tamanho"
-                    value="38"
+                    value="44"
                 /></label>
 
                 <label class="tamanho-item"
-                  >40<input
+                  >46<input
                     type="checkbox"
                     class="tamanhocheck"
                     name="tamanho"
-                    value="40"
+                    value="46"
                 /></label>
               </div>
             </section>
 
             <section class="precos">
-              <h3>FAIXA DE PREÇO</h3>
+              <h3 class="title-prices">FAIXA DE PREÇO</h3>
 
               <ul class="precos-container">
-                <li class="preco">
-                  <label class="checkbox-container"
+                <li class="checkbox-container">
+                  <label
                     ><input
                       type="checkbox"
                       class="checkboxs"
                       name="price"
                       value="50"
                   /></label>
-                  <p>de R$0 até R$50</p>
+                  <p>de R$0 até R$50</span>
                 </li>
-                <li class="preco">
-                  <label class="checkbox-container"
+                <li class="checkbox-container">
+                  <label
                     ><input
                       type="checkbox"
                       class="checkboxs"
@@ -272,8 +273,8 @@
                   /></label>
                   <p>de R$51 até R$150</p>
                 </li>
-                <li class="preco">
-                  <label class="checkbox-container"
+                <li class="checkbox-container">
+                  <label
                     ><input
                       type="checkbox"
                       class="checkboxs"
@@ -282,8 +283,8 @@
                   /></label>
                   <p>de R$151 até R$300</p>
                 </li>
-                <li class="preco">
-                  <label class="checkbox-container"
+                <li class="checkbox-container">
+                  <label
                     ><input
                       type="checkbox"
                       class="checkboxs"
@@ -292,8 +293,8 @@
                   /></label>
                   <p>de R$301 até R$500</p>
                 </li>
-                <li class="preco">
-                  <label class="checkbox-container"
+                <li class="checkbox-container">
+                  <label
                     ><input
                       type="checkbox"
                       class="checkboxs"
@@ -313,24 +314,12 @@
         <section class="produtos"></section>
       </div>
       <div class="btn">
-        <button class="carregar">CARREGAR MAIS</button>
+        <button class="btn-carregar-mais" >CARREGAR MAIS</button>
       </div>
     </main>
 
     <footer></footer>
-    <script>
-      const tamanhoItems = document.querySelectorAll(".tamanho-item");
-
-      tamanhoItems.forEach((item) => {
-        item.addEventListener("click", () => {
-          item.classList.toggle("border");
-          const checkbox = item.querySelector('input[type="checkbox"]');
-          checkbox.checked = !checkbox.checked;
-        });
-      });
-    </script>
   </body>
 
   <script src="bundle.js"></script>
-  <script src="ts/index.ts"></script>
 </html>
