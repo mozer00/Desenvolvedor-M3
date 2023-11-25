@@ -13,32 +13,113 @@ const paginacao: { end: number; loadSize: number } = {
   loadSize: window.innerWidth < 768 ? 4 : 9,
 };
 
-const filtros = {};
+function aplicarFiltro(type: string, value: any) {
+  switch (type) {
+    case "color":
+      if (filtroSelecionado.colors.includes(value)) {
+        filtroSelecionado.colors = filtroSelecionado.colors.filter(
+          (c) => c !== value
+        );
+      } else {
+        filtroSelecionado.colors.push(value);
+      }
+      break;
+    case "size":
+      if (filtroSelecionado.sizes.includes(value)) {
+        filtroSelecionado.sizes = filtroSelecionado.sizes.filter(
+          (t) => t !== value
+        );
+      } else {
+        filtroSelecionado.sizes.push(value);
+      }
+      break;
+    case "price":
+      if (filtroSelecionado.prices.find((p) => p.id === value.id)) {
+        filtroSelecionado.prices = filtroSelecionado.prices.filter(
+          (p) => p.id !== value.id
+        );
+      } else {
+        filtroSelecionado.prices.push(value);
+      }
+      break;
+  }
+  carregarProdutos();
+}
+
+const filtros = {
+  colors: [
+    "Amarelo",
+    "Azul",
+    "Branco",
+    "Cinza",
+    "Laranja",
+    "Verde",
+    "Vermelho",
+    "Preto",
+    "Rosa",
+    "Vinho",
+  ],
+  sizes: ["P", "M", "G", "GG", "U", "36", "38", "40", "42", "44", "46"],
+  prices: [
+    { id: 1, max: 50 },
+    { id: 2, min: 51, max: 150 },
+    { id: 3, min: 151, max: 300 },
+    { id: 4, min: 301, max: 500 },
+    { id: 5, min: 501 },
+  ],
+};
+const filtroSelecionado = {
+  colors: Array<string>(),
+  sizes: Array<string>(),
+  prices: Array<{ id: number; min: number; max: number }>(),
+};
+const ordenacao = {
+  sort: "",
+  order: "",
+};
 
 async function carregarMais() {
-  paginacao.end = paginacao.end + paginacao.loadSize;
+  paginacao.end += paginacao.loadSize;
   await carregarProdutos();
 }
 
-function registrarEventos() {
-  //#region product event
-  const btnCarregarMais = document.querySelector(".btn-carregar-mais");
-  btnCarregarMais.addEventListener("click", carregarMais);
-  //#endregion
+function adicionarEvento(
+  identificador: string,
+  acao: (e: Event | any | undefined) => void,
+  evento: string = "click"
+) {
+  const el = document.querySelector(identificador);
+  if (el) {
+    el.addEventListener(evento, acao);
+  }
+}
 
-  //#region dropdown events
-  const dropdownButton = document.querySelector(".dropdown");
-  const dropdownContent = document.querySelector(".drop");
-  dropdownButton.addEventListener("click", () => {
+function registrarEventos() {
+  adicionarEvento(".btn-carregar-mais", carregarMais);
+
+  adicionarEvento(".dropdown", (e) => {
+    e.stopPropagation();
+    const dropdownContent = document.querySelector(".drop");
     dropdownContent.classList.toggle("show");
   });
 
-  document.addEventListener("mousedown", () => {
-    const dropdown = document.querySelector(".drop");
-    dropdown.classList.remove("show");
+  document.addEventListener("click", () => {
+    const dropdownContent = document.querySelector(".drop");
+    dropdownContent.classList.remove("show");
   });
 
-  //#endregion
+  adicionarEvento(".drop", (e) => {
+    const el = e.target as HTMLElement;
+    e.stopPropagation();
+    const dropdownContent = document.querySelector(".drop");
+    dropdownContent.classList.remove("show");
+    (document.querySelector("#selected-order") as HTMLElement).innerText =
+      el.getAttribute("data-name");
+    adicionarOrdenacao(
+      el.getAttribute("data-sort"),
+      el.getAttribute("data-order")
+    );
+  });
 
   const tamanhoItems = document.querySelectorAll(".tamanho-item");
   tamanhoItems.forEach((item) => {
@@ -51,20 +132,104 @@ function registrarEventos() {
     });
   });
 
-  const menuBtn = document.querySelector(".menu-btn-mobile");
-  const aside = document.querySelector("aside");
-
-  menuBtn.addEventListener("click", () => {
-    aside.classList.toggle("hide-aside");
-    document.querySelector(".main-content").classList.toggle("menu-open");
+  filtros.colors.forEach((fc: string) => {
+    adicionarEvento(
+      ".filtro-cor-" + fc,
+      () => aplicarFiltro("color", fc),
+      "change"
+    );
   });
+
+  filtros.sizes.forEach((ft: string) => {
+    adicionarEvento(
+      ".filtro-tamanho-" + ft,
+      () => aplicarFiltro("size", ft),
+      "change"
+    );
+  });
+
+  filtros.prices.forEach((fp: any) => {
+    adicionarEvento(
+      ".filtro-preco-" + fp.id,
+      () => aplicarFiltro("price", fp),
+      "change"
+    );
+  });
+
+  adicionarEvento(".close-icon", () => {
+    (document.querySelector(".aside") as HTMLElement).classList.remove("open");
+  });
+
+  const openMobilefilter = () => {
+    (document.querySelector(".aside") as HTMLElement).classList.add("open");
+  };
+  adicionarEvento("#filterButton", openMobilefilter);
+
+  const openMobileorder = () => {
+    (document.querySelector(".container") as HTMLElement).classList.add("open");
+  };
+  adicionarEvento("#orderButton", openMobileorder);
 }
 
+function adicionarOrdenacao(sort: string, order: string) {
+  ordenacao.sort = sort;
+  ordenacao.order = order;
+  carregarProdutos();
+}
+
+function gerarFiltrosParametros() {
+  let parametros = "";
+
+  filtroSelecionado.colors.forEach((cor) => {
+    parametros += `&color=${cor}`;
+  });
+
+  filtroSelecionado.sizes.forEach((tamanho) => {
+    parametros += `&size_like=${tamanho}`;
+  });
+
+  filtroSelecionado.prices.forEach((preco) => {
+    if (preco.min) {
+      parametros += `&price_gte=${preco.min}`;
+    }
+    if (preco.max) {
+      parametros += `&price_lte=${preco.max}`;
+    }
+  });
+  return parametros;
+}
+
+function gerarOrdenacaoParametros() {
+  let parametrosOrdenacao = "";
+
+  if (ordenacao.sort) {
+    parametrosOrdenacao += `&_sort=${ordenacao.sort}`;
+  }
+  if (ordenacao.order) {
+    parametrosOrdenacao += `&_order=${ordenacao.order}`;
+  }
+
+  return parametrosOrdenacao;
+}
+
+function gerarPaginacaoParametros() {
+  let parametrosPaginacao = "_start=0";
+
+  if (paginacao.end) {
+    parametrosPaginacao += `&_end=${paginacao.end}`;
+  }
+
+  return parametrosPaginacao;
+}
 async function carregarProdutos() {
   try {
-    const parametrosPag = `_start=0&_end=${paginacao.end}`;
-    const response = await fetch(serverUrl + `/products?${parametrosPag}`);
-
+    const parametrosPaginacao = gerarPaginacaoParametros();
+    const parametrosOrdenacao = gerarOrdenacaoParametros();
+    const parametrosFiltro = gerarFiltrosParametros();
+    const response = await fetch(
+      serverUrl +
+        `/products?${parametrosPaginacao}${parametrosFiltro}${parametrosOrdenacao}`
+    );
     const total = response.headers.get("X-Total-Count") as unknown as number;
     const btnCarregarMais = document.querySelector(
       ".btn-carregar-mais"
@@ -76,7 +241,7 @@ async function carregarProdutos() {
 
     let renderedHtml = "";
     products.forEach((x) => {
-      renderedHtml += renderProductHtmlTemplate(x);
+      renderedHtml += renderizarProdutoHtml(x);
     });
 
     if (productDiv) {
@@ -86,8 +251,7 @@ async function carregarProdutos() {
     console.error("Error fetching products:", error);
   }
 }
-
-function renderProductHtmlTemplate(produto: Product) {
+function renderizarProdutoHtml(produto: Product) {
   return `
     <div class="card-produto">
       <img src="${produto.image}" alt="${produto.name}"/>
@@ -95,10 +259,24 @@ function renderProductHtmlTemplate(produto: Product) {
       <span>R$ ${produto.price.toFixed(2).replace(".", ",")}</span>
       <p>até ${produto.parcelamento[0]}x de R$ ${produto.parcelamento[1]
     .toFixed(2)
-    .replace(".", ",")}</p>
-      <button>
+    .replace(".", ",")} </p>
+      <button onclick="adicionarAoCarrinho()">
         <p>COMPRAR</p>
       </button>
     </div>
   `;
 }
+
+//#region Carrinho
+const carrinho = {
+  totalItens: 0,
+};
+function adicionarAoCarrinho() {
+  const elementoCarrinho = document.querySelector(
+    ".numero-carrinho"
+  ) as HTMLElement;
+  carrinho.totalItens++;
+  elementoCarrinho.innerText = carrinho.totalItens as unknown as string;
+}
+(window as any).adicionarAoCarrinho = adicionarAoCarrinho;
+//#endregion

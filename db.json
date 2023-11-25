@@ -113,7 +113,7 @@
     {
       "id": "12",
       "name": "Pochete Clutch",
-      "price": 99.0,
+      "price": 560.0,
       "parcelamento": [3, 33],
       "color": "Preto",
       "image": "/img/img_10.png",
@@ -133,7 +133,7 @@
     {
       "id": "14",
       "name": "Pochete Clutch",
-      "price": 99.0,
+      "price": 250.0,
       "parcelamento": [3, 33],
       "color": "Preto",
       "image": "/img/img_10.png",

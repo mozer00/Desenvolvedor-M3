@@ -24,21 +24,46 @@
     <main class="main-content">
       <div class="main-top-wrapper">
         <h1>Blusas</h1>
-        <button class="menu-btn-mobile">Filtrar</button>
-
+        <div class="menu-btn-mobile">
+          <button id="filterButton" >Filtrar</button>            
+          <button id="orderButton">Ordenar</button>
+        </div>   
+        
         <div class="dropdown">
-          <span>Ordenar por: </span>
-
+          <span id="selected-order">Ordenar por: </span>
           <img src="./img/Vector 1.svg" />
-          <ul class="drop">
-            <li class="dropdown-content active">Mais recentes</li>
-            <li class="dropdown-content">Menor preço</li>
-            <li class="dropdown-content">Maior preço</li>
+          <ul class="drop" id="order-dropdown">
+            <li class="dropdown-content" data-name="Mais recentes" data-sort="date" data-order="desc">Mais recentes</li>
+            <li class="dropdown-content" data-name="Menor preço" data-sort="price" data-order="asc">Menor preço</li>
+            <li class="dropdown-content" data-name="Maior preço" data-sort="price" data-order="desc">Maior preço</li>
           </ul>
         </div>
       </div>
       <div class="container">
-        <aside class="aside">
+
+            <div class="action-btn-order-mobile">
+              <span class="order-btn">ORDENAR</span>
+                <div class="close-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+                  <path d="M0.5 18.852L17.5547 1.00001" stroke="black"/>
+                  <line y1="-0.5" x2="25.2899" y2="-0.5" transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)" stroke="black"/>
+                  </svg>
+                </div>
+            </div>       
+
+        <aside class="aside">         
+
+          <div class="action-btn-filter-mobile"> 
+            <span class="filter-btn">FILTRAR</span>
+            <div class="close-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
+                <path d="M0.5 18.852L17.5547 1.00001" stroke="black"/>
+                <line y1="-0.5" x2="25.2899" y2="-0.5" transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)" stroke="black"/>
+                </svg>
+            </div>            
+          </div>
+           
+         
           <div class="aside-container">
             <section class="cores">
               <h3 class="title-colors">CORES</h3>
@@ -48,7 +73,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-amarelo"
+                      class="inputcheck filtro-cor-Amarelo"
                       name="cor"
                       value="Amarelo"
                     />
@@ -59,7 +84,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-azul"
+                      class="inputcheck filtro-cor-Azul"
                       name="cor"
                       value="Azul"
                     />
@@ -70,7 +95,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-branco"
+                      class="inputcheck filtro-cor-Branco"
                       name="cor"
                       value="Branco"
                     />
@@ -81,7 +106,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-cinza"
+                      class="inputcheck filtro-cor-Cinza"
                       name="cor"
                       value="Cinza"
                     />
@@ -92,7 +117,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-laranja"
+                      class="inputcheck filtro-cor-Laranja"
                       name="cor"
                       value="Laranja"
                     />
@@ -103,7 +128,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-verde"
+                      class="inputcheck filtro-cor-Verde"
                       name="cor"
                       value="Verde"
                     />
@@ -114,7 +139,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-vermelho"
+                      class="inputcheck filtro-cor-Vermelho"
                       name="cor"
                       value="Vermelho"
                     />
@@ -125,7 +150,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-preto"
+                      class="inputcheck filtro-cor-Preto"
                       name="cor"
                       value="Preto"
                     />
@@ -136,7 +161,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-rosa"
+                      class="inputcheck filtro-cor-Rosa"
                       name="cor"
                       value="Rosa"
                     />
@@ -147,7 +172,7 @@
                   <label class="checkbox-container">
                     <input
                       type="checkbox"
-                      class="inputcheck filtro-cor-vinho"
+                      class="inputcheck filtro-cor-Vinho"
                       name="cor"
                       value="Vinho"
                     />
@@ -163,14 +188,14 @@
                 <label class="tamanho-item"
                   >P<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-P"
                     name="tamanho"
                     value="P"
                 /></label>
                 <label class="tamanho-item"
                   >M<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-M"
                     name="tamanho"
                     value="M"
                 /></label>
@@ -178,7 +203,7 @@
                 <label class="tamanho-item"
                   >G<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-G"
                     name="tamanho"
                     value="G"
                 /></label>
@@ -186,7 +211,7 @@
                 <label class="tamanho-item"
                   >GG<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-GG"
                     name="tamanho"
                     value="GG"
                 /></label>
@@ -194,7 +219,7 @@
                 <label class="tamanho-item"
                   >U<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-U"
                     name="tamanho"
                     value="U"
                 /></label>
@@ -202,7 +227,7 @@
                 <label class="tamanho-item"
                   >36<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-36"
                     name="tamanho"
                     value="36"
                 /></label>
@@ -210,7 +235,7 @@
                 <label class="tamanho-item"
                   >38<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-38"
                     name="tamanho"
                     value="38"
                 /></label>
@@ -218,7 +243,7 @@
                 <label class="tamanho-item"
                   >40<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-40"
                     name="tamanho"
                     value="40"
                 /></label>
@@ -226,7 +251,7 @@
                 <label class="tamanho-item"
                   >42<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-42"
                     name="tamanho"
                     value="42"
                 /></label>
@@ -234,7 +259,7 @@
                 <label class="tamanho-item"
                   >44<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-44"
                     name="tamanho"
                     value="44"
                 /></label>
@@ -242,7 +267,7 @@
                 <label class="tamanho-item"
                   >46<input
                     type="checkbox"
-                    class="tamanhocheck"
+                    class="tamanhocheck filtro-tamanho-46"
                     name="tamanho"
                     value="46"
                 /></label>
@@ -257,7 +282,7 @@
                   <label
                     ><input
                       type="checkbox"
-                      class="checkboxs"
+                      class="checkboxs filtro-preco-1"
                       name="price"
                       value="50"
                   /></label>
@@ -267,7 +292,7 @@
                   <label
                     ><input
                       type="checkbox"
-                      class="checkboxs"
+                      class="checkboxs filtro-preco-2"
                       name="price"
                       value="150"
                   /></label>
@@ -277,7 +302,7 @@
                   <label
                     ><input
                       type="checkbox"
-                      class="checkboxs"
+                      class="checkboxs filtro-preco-3"
                       name="price"
                       value="300"
                   /></label>
@@ -287,7 +312,7 @@
                   <label
                     ><input
                       type="checkbox"
-                      class="checkboxs"
+                      class="checkboxs filtro-preco-4"
                       name="price"
                       value="500"
                   /></label>
@@ -297,7 +322,7 @@
                   <label
                     ><input
                       type="checkbox"
-                      class="checkboxs"
+                      class="checkboxs filtro-preco-5"
                       name="price"
                       value="501"
                   /></label>
@@ -306,12 +331,13 @@
               </ul>
             </section>
             <!-- <div class="btn-busca">
-            <button onclick="" class="aplicar">APLICAR</button>
-            <button onclick="" class="limpar">LIMPAR</button>            
+            <button  class="aplicar">APLICAR</button>
+            <button  class="limpar">LIMPAR</button>            
           </div> -->
           </div>
         </aside>
-        <section class="produtos"></section>
+        <section class="produtos">          
+        </section>
       </div>
       <div class="btn">
         <button class="btn-carregar-mais" >CARREGAR MAIS</button>
