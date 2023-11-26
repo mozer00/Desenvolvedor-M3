@@ -5,7 +5,9 @@
 body {
   background: #fff;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
@@ -64,8 +66,10 @@ header {
 main {
   font-family: "Open Sans", sans-serif;
   max-width: 1280px;
+  width: 100%;
   margin: auto;
   padding: 0 16px;
+  flex: 1;
   h1 {
     color: #333;
     font-size: 32px;
@@ -220,6 +224,7 @@ main {
       border: 1px solid rgba(0, 0, 0, 0.5);
       stroke: black;
       stroke-opacity: 0.5;
+      cursor: pointer;
     }
 
     .inputcheck::before,
@@ -250,9 +255,33 @@ main {
         line-height: 100%;
         margin-left: 10px;
       }
+
+      .btn-all-colors {
+        margin-bottom: 14px;
+        border: none;
+        background-color: #fff;
+        text-decoration-line: underline;
+        color: #666;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 100%;
+        cursor: pointer;
+      }
     }
     .title-colors {
       margin-bottom: 14px;
+      img {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        display: flex;
+        justify-content: space-between;
+        width: 150px;
+        img {
+          display: block;
+        }
+      }
     }
 
     .title-prices {
@@ -337,16 +366,16 @@ main {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
       margin-top: 20px;
 
       .aplicar {
-        background-color: var();
+        background-color: #00c0ee;
+        border: 1px solid #00c0ee;
         color: #fff;
-        font-family: "Open Sans", sans-serif;
         font-size: 14px;
         border: none;
-        width: 160px;
+        max-width: 160px;
+        width: 100%;
         padding: 8px 31px;
         font-style: normal;
         font-weight: 400;
@@ -355,7 +384,8 @@ main {
       }
 
       .limpar {
-        width: 160px;
+        max-width: 160px;
+        width: 100%;
         padding: 8px 31px;
         font-size: 14px;
         border: 1px solid #666;
@@ -366,6 +396,9 @@ main {
       }
     }
     .action-btn-filter-mobile {
+      display: none;
+    }
+    .btn-busca {
       display: none;
     }
   }
@@ -383,8 +416,11 @@ main {
   .card-produto {
     margin-bottom: 16px;
     text-align: center;
+    align-items: center;
     width: 100%;
     max-width: calc(33% - 48px);
+    display: flex;
+    flex-direction: column;
   }
 
   .card-produto img {
@@ -425,11 +461,17 @@ main {
     font-weight: 700;
   }
 
-  .card-produto p {
+  .card-produto .parcelamento {
     color: #666;
     font-weight: 400;
     line-height: normal;
     margin: 5px;
+    @media screen and (max-width: 820px) and (min-width: 768px) {
+      min-height: 48px;
+    }
+    @media (max-width: 390px) {
+      min-height: 48px;
+    }
   }
 
   .btn {
@@ -450,13 +492,30 @@ main {
       text-transform: uppercase;
       border: none;
       cursor: pointer;
+      margin-top: 65px;
     }
   }
-  .action-btn-order-mobile {
+  .order-by-mobile {
     display: none;
   }
 }
-
+footer {
+  text-align: center;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  width: 100%;
+  margin-top: 35px;
+  span {
+    display: block;
+    padding: 7px;
+  }
+}
 @media (max-width: 768px) {
   header .header-container {
     width: 90%;
@@ -476,36 +535,68 @@ main {
   }
 
   .main-content {
-    .container {
+    .main-top-wrapper {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      .menu-btn-mobile {
+        display: flex;
+      }
+      h1 {
+        margin-bottom: 12px;
+      }
+      button {
+        color: #666;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 0;
+        border: 1px solid #666;
+        background-color: #fff;
+        padding: 8px 30px;
+      }
+    }
+    .order-by-mobile {
       &.open {
-        position: fixed;
+        justify-content: space-between;
         width: 100vw;
-        height: 100vh;
+        position: fixed;
         inset: 0;
         display: block;
         background-color: #fff;
-        .action-btn-order-mobile {
-          background-color: red;
+        ul {
+          display: block;
+          all: unset;
+        }
+        .order-title {
+          padding: 16px;
+          display: block;
+          color: #666;
+          font-size: 28px;
+          font-weight: 400;
+          text-transform: uppercase;
+        }
+        .order-by-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 16px;
           border-bottom: 2px solid #c7c7c7;
-          margin-bottom: 30px;
+        }
+        .order-btn {
+          font-size: 22px;
+          font-weight: 400;
+          line-height: normal;
+          margin-top: 30px;
+          padding: 0 16px;
+        }
+        .close-icon {
+          margin-right: 16px;
         }
       }
-
-      flex-direction: column;
     }
     .hide-title {
       display: none;
-    }
-    &.open {
-      position: fixed;
-      width: 100vw;
-      inset: 0;
-      display: block;
-      background-color: #fff;
     }
 
     aside {
@@ -528,6 +619,45 @@ main {
           margin-bottom: 30px;
         }
       }
+      .btn-busca {
+        display: block;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+
+        .aplicar {
+          background-color: #00c0ee;
+          border: 1px solid #00c0ee;
+          color: #fff;
+          font-size: 14px;
+          max-width: 160px;
+          width: 100%;
+          padding: 8px 31px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          text-transform: uppercase;
+          margin-right: 23px;
+          cursor: pointer;
+        }
+
+        .limpar {
+          max-width: 160px;
+          width: 100%;
+          padding: 8px 31px;
+          font-size: 14px;
+          border: 1px solid #666;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          text-transform: uppercase;
+          background-color: #fff;
+          color: #666;
+          cursor: pointer;
+        }
+      }
     }
     aside.show-aside {
       display: block;
@@ -544,6 +674,13 @@ main {
 
     .card-produto {
       max-width: calc(50% - 24px);
+    }
+
+    .lista-container-cores {
+      display: none;
+      &.open {
+        display: block;
+      }
     }
   }
 }

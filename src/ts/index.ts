@@ -156,19 +156,89 @@ function registrarEventos() {
     );
   });
 
-  adicionarEvento(".close-icon", () => {
-    (document.querySelector(".aside") as HTMLElement).classList.remove("open");
+  const orderMobile = document.querySelectorAll(".order-by-mobile .order-btn");
+  orderMobile.forEach((item) => {
+    item.addEventListener("click", () => {
+      adicionarOrdenacao(
+        item.getAttribute("data-sort"),
+        item.getAttribute("data-order")
+      );
+      document.querySelector(".order-by-mobile").classList.remove("open");
+    });
   });
 
   const openMobilefilter = () => {
     (document.querySelector(".aside") as HTMLElement).classList.add("open");
+    adicionarEvento(".action-btn-filter-mobile .close-icon", () => {
+      (document.querySelector(".aside") as HTMLElement).classList.remove(
+        "open"
+      );
+    });
   };
   adicionarEvento("#filterButton", openMobilefilter);
 
   const openMobileorder = () => {
-    (document.querySelector(".container") as HTMLElement).classList.add("open");
+    (document.querySelector(".order-by-mobile") as HTMLElement).classList.add(
+      "open"
+    );
+    adicionarEvento(".order-by-mobile .close-icon", () => {
+      (
+        document.querySelector(".order-by-mobile") as HTMLElement
+      ).classList.remove("open");
+    });
   };
   adicionarEvento("#orderButton", openMobileorder);
+
+  const aplicar = () => {
+    const asideMobile = document.querySelector(".aside");
+    asideMobile.classList.remove("open");
+  };
+
+  adicionarEvento(".aplicar", aplicar);
+
+  const limparFiltros = () => {
+    filtroSelecionado.colors = [];
+    filtroSelecionado.sizes = [];
+    filtroSelecionado.prices = [];
+
+    filtros.colors.forEach((color) => {
+      const input = document.querySelector(
+        `.filtro-cor-${color}`
+      ) as HTMLInputElement;
+      if (input) {
+        input.checked = false;
+      }
+    });
+
+    const tamanhoItems = document.querySelectorAll(".tamanho-item");
+    tamanhoItems.forEach((item) => {
+      item.classList.remove("border");
+      const checkbox = item.querySelector(
+        'input[type="checkbox"]'
+      ) as HTMLInputElement;
+      checkbox.checked = false;
+    });
+
+    filtros.prices.forEach((price) => {
+      const input = document.querySelector(
+        `.filtro-preco-${price.id}`
+      ) as HTMLInputElement;
+      if (input) {
+        input.checked = false;
+      }
+    });
+
+    filtroSelecionado.colors = [];
+    filtroSelecionado.sizes = [];
+    filtroSelecionado.prices = [];
+
+    carregarProdutos();
+  };
+  adicionarEvento(".limpar", limparFiltros);
+
+  adicionarEvento(".accordion-colors", () => {
+    document.querySelector(".lista-container-cores").classList.toggle("open");
+  });
 }
 
 function adicionarOrdenacao(sort: string, order: string) {
@@ -257,9 +327,9 @@ function renderizarProdutoHtml(produto: Product) {
       <img src="${produto.image}" alt="${produto.name}"/>
       <h4>${produto.name}</h4>
       <span>R$ ${produto.price.toFixed(2).replace(".", ",")}</span>
-      <p>até ${produto.parcelamento[0]}x de R$ ${produto.parcelamento[1]
-    .toFixed(2)
-    .replace(".", ",")} </p>
+      <p class='parcelamento'>até ${
+        produto.parcelamento[0]
+      }x de R$ ${produto.parcelamento[1].toFixed(2).replace(".", ",")} </p>
       <button onclick="adicionarAoCarrinho()">
         <p>COMPRAR</p>
       </button>
@@ -279,4 +349,23 @@ function adicionarAoCarrinho() {
   elementoCarrinho.innerText = carrinho.totalItens as unknown as string;
 }
 (window as any).adicionarAoCarrinho = adicionarAoCarrinho;
+//#endregion
+
+//#region all colors
+const list = document.querySelector(".lista-container-cores");
+const showMore = document.querySelector(".btn-all-colors");
+const items = list.getElementsByTagName("li");
+
+Array.from(items).forEach((item, index) => {
+  if (index >= 5) {
+    item.style.display = "none";
+  }
+});
+
+showMore.addEventListener("click", function () {
+  Array.from(items).forEach((items, index) => {
+    items.style.display = "block";
+  });
+  (showMore as HTMLElement).style.display = "none";
+});
 //#endregion

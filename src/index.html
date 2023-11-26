@@ -12,7 +12,9 @@
     <header>
       <div class="header-container">
         <div class="logo">
-          <img class="header-logo" src="./img/logo-m3.png" alt="logo m3" />
+          <a href="/">
+            <img class="header-logo" src="./img/logo-m3.png" alt="logo m3" />
+          </a>
         </div>
 
         <div class="carrinho">
@@ -25,50 +27,122 @@
       <div class="main-top-wrapper">
         <h1>Blusas</h1>
         <div class="menu-btn-mobile">
-          <button id="filterButton" >Filtrar</button>            
+          <button id="filterButton">Filtrar</button>
           <button id="orderButton">Ordenar</button>
-        </div>   
-        
+        </div>
+
         <div class="dropdown">
           <span id="selected-order">Ordenar por: </span>
           <img src="./img/Vector 1.svg" />
           <ul class="drop" id="order-dropdown">
-            <li class="dropdown-content" data-name="Mais recentes" data-sort="date" data-order="desc">Mais recentes</li>
-            <li class="dropdown-content" data-name="Menor preço" data-sort="price" data-order="asc">Menor preço</li>
-            <li class="dropdown-content" data-name="Maior preço" data-sort="price" data-order="desc">Maior preço</li>
+            <li
+              class="dropdown-content"
+              data-name="Mais recentes"
+              data-sort="date"
+              data-order="desc"
+            >
+              Mais recentes
+            </li>
+            <li
+              class="dropdown-content"
+              data-name="Menor preço"
+              data-sort="price"
+              data-order="asc"
+            >
+              Menor preço
+            </li>
+            <li
+              class="dropdown-content"
+              data-name="Maior preço"
+              data-sort="price"
+              data-order="desc"
+            >
+              Maior preço
+            </li>
           </ul>
         </div>
       </div>
       <div class="container">
+        <div class="order-by-mobile">
+          <div class="order-by-header">
+            <span class="order-title">ORDENAR</span>
+            <div class="close-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="20"
+                viewBox="0 0 19 20"
+                fill="none"
+              >
+                <path d="M0.5 18.852L17.5547 1.00001" stroke="black" />
+                <line
+                  y1="-0.5"
+                  x2="25.2899"
+                  y2="-0.5"
+                  transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)"
+                  stroke="black"
+                />
+              </svg>
+            </div>
+          </div>
 
-            <div class="action-btn-order-mobile">
-              <span class="order-btn">ORDENAR</span>
-                <div class="close-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
-                  <path d="M0.5 18.852L17.5547 1.00001" stroke="black"/>
-                  <line y1="-0.5" x2="25.2899" y2="-0.5" transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)" stroke="black"/>
-                  </svg>
-                </div>
-            </div>       
+          <div
+            class="order-btn"
+            data-name="Mais recentes"
+            data-sort="date"
+            data-order="desc"
+          >
+            Mais recentes
+          </div>
+          <div
+            class="order-btn"
+            data-name="Maior preço"
+            data-sort="price"
+            data-order="desc"
+          >
+            Maior preço
+          </div>
+          <div
+            class="order-btn"
+            data-name="Menor preço"
+            data-sort="price"
+            data-order="asc"
+          >
+            Menor preço
+          </div>
+        </div>
 
-        <aside class="aside">         
-
-          <div class="action-btn-filter-mobile"> 
+        <aside class="aside">
+          <div class="action-btn-filter-mobile">
             <span class="filter-btn">FILTRAR</span>
             <div class="close-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewBox="0 0 19 20" fill="none">
-                <path d="M0.5 18.852L17.5547 1.00001" stroke="black"/>
-                <line y1="-0.5" x2="25.2899" y2="-0.5" transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)" stroke="black"/>
-                </svg>
-            </div>            
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="19"
+                height="20"
+                viewBox="0 0 19 20"
+                fill="none"
+              >
+                <path d="M0.5 18.852L17.5547 1.00001" stroke="black" />
+                <line
+                  y1="-0.5"
+                  x2="25.2899"
+                  y2="-0.5"
+                  transform="matrix(0.711746 0.702437 -0.874311 0.485367 0 1.23547)"
+                  stroke="black"
+                />
+              </svg>
+            </div>
           </div>
-           
-         
+
           <div class="aside-container">
             <section class="cores">
-              <h3 class="title-colors">CORES</h3>
+              <div class="title-colors">
+                <h3>CORES</h3>
+                <img src="./img/Vector 1.svg" class="accordion-colors" />
+              </div>
 
-              <ul class="lista-container">
+              <ul class="lista-container-cores">
                 <li class="lista">
                   <label class="checkbox-container">
                     <input
@@ -179,6 +253,24 @@
                     <p>Vinho</p>
                   </label>
                 </li>
+                <span class="all-colors"
+                  ><button class="btn-all-colors">
+                    Ver todas as cores
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="9"
+                      height="7"
+                      viewBox="0 0 9 7"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L4.5 6L8 1.00519"
+                        stroke="#666666"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </button>
+                </span>
               </ul>
             </section>
             <section class="tamanhos">
@@ -286,7 +378,7 @@
                       name="price"
                       value="50"
                   /></label>
-                  <p>de R$0 até R$50</span>
+                  <p>de R$0 até R$50</p>
                 </li>
                 <li class="checkbox-container">
                   <label
@@ -330,21 +422,22 @@
                 </li>
               </ul>
             </section>
-            <!-- <div class="btn-busca">
-            <button  class="aplicar">APLICAR</button>
-            <button  class="limpar">LIMPAR</button>            
-          </div> -->
+            <div class="btn-busca">
+              <button class="aplicar">APLICAR</button>
+              <button class="limpar">LIMPAR</button>
+            </div>
           </div>
         </aside>
-        <section class="produtos">          
-        </section>
+        <section class="produtos"></section>
       </div>
       <div class="btn">
-        <button class="btn-carregar-mais" >CARREGAR MAIS</button>
+        <button class="btn-carregar-mais">CARREGAR MAIS</button>
       </div>
     </main>
 
-    <footer></footer>
+    <footer>
+      <span>M3: Implantação de E-commerce VTEX</span>
+    </footer>
   </body>
 
   <script src="bundle.js"></script>
