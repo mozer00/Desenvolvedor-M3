@@ -159,6 +159,8 @@ function registrarEventos() {
   const orderMobile = document.querySelectorAll(".order-by-mobile .order-btn");
   orderMobile.forEach((item) => {
     item.addEventListener("click", () => {
+      (document.querySelector("#selected-order") as HTMLElement).innerText =
+        item.getAttribute("data-name");
       adicionarOrdenacao(
         item.getAttribute("data-sort"),
         item.getAttribute("data-order")
@@ -196,49 +198,65 @@ function registrarEventos() {
 
   adicionarEvento(".aplicar", aplicar);
 
-  const limparFiltros = () => {
-    filtroSelecionado.colors = [];
-    filtroSelecionado.sizes = [];
-    filtroSelecionado.prices = [];
-
-    filtros.colors.forEach((color) => {
-      const input = document.querySelector(
-        `.filtro-cor-${color}`
-      ) as HTMLInputElement;
-      if (input) {
-        input.checked = false;
-      }
-    });
-
-    const tamanhoItems = document.querySelectorAll(".tamanho-item");
-    tamanhoItems.forEach((item) => {
-      item.classList.remove("border");
-      const checkbox = item.querySelector(
-        'input[type="checkbox"]'
-      ) as HTMLInputElement;
-      checkbox.checked = false;
-    });
-
-    filtros.prices.forEach((price) => {
-      const input = document.querySelector(
-        `.filtro-preco-${price.id}`
-      ) as HTMLInputElement;
-      if (input) {
-        input.checked = false;
-      }
-    });
-
-    filtroSelecionado.colors = [];
-    filtroSelecionado.sizes = [];
-    filtroSelecionado.prices = [];
-
-    carregarProdutos();
-  };
   adicionarEvento(".limpar", limparFiltros);
 
   adicionarEvento(".accordion-colors", () => {
     document.querySelector(".lista-container-cores").classList.toggle("open");
   });
+
+  //#region all colors
+  const list = document.querySelector(".lista-container-cores");
+  const showMore = document.querySelector(".btn-all-colors");
+  const items = list.getElementsByTagName("li");
+
+  Array.from(items).forEach((item, index) => {
+    if (index >= 5) {
+      item.style.display = "none";
+    }
+  });
+
+  showMore.addEventListener("click", function () {
+    Array.from(items).forEach((items, index) => {
+      items.style.display = "block";
+    });
+    (showMore as HTMLElement).style.display = "none";
+  });
+  //#endregion
+}
+
+function limparFiltros() {
+  filtros.colors.forEach((color) => {
+    const input = document.querySelector(
+      `.filtro-cor-${color}`
+    ) as HTMLInputElement;
+    if (input) {
+      input.checked = false;
+    }
+  });
+
+  const tamanhoItems = document.querySelectorAll(".tamanho-item");
+  tamanhoItems.forEach((item) => {
+    item.classList.remove("border");
+    const checkbox = item.querySelector(
+      'input[type="checkbox"]'
+    ) as HTMLInputElement;
+    checkbox.checked = false;
+  });
+
+  filtros.prices.forEach((price) => {
+    const input = document.querySelector(
+      `.filtro-preco-${price.id}`
+    ) as HTMLInputElement;
+    if (input) {
+      input.checked = false;
+    }
+  });
+
+  filtroSelecionado.colors = [];
+  filtroSelecionado.sizes = [];
+  filtroSelecionado.prices = [];
+
+  carregarProdutos();
 }
 
 function adicionarOrdenacao(sort: string, order: string) {
@@ -349,23 +367,4 @@ function adicionarAoCarrinho() {
   elementoCarrinho.innerText = carrinho.totalItens as unknown as string;
 }
 (window as any).adicionarAoCarrinho = adicionarAoCarrinho;
-//#endregion
-
-//#region all colors
-const list = document.querySelector(".lista-container-cores");
-const showMore = document.querySelector(".btn-all-colors");
-const items = list.getElementsByTagName("li");
-
-Array.from(items).forEach((item, index) => {
-  if (index >= 5) {
-    item.style.display = "none";
-  }
-});
-
-showMore.addEventListener("click", function () {
-  Array.from(items).forEach((items, index) => {
-    items.style.display = "block";
-  });
-  (showMore as HTMLElement).style.display = "none";
-});
 //#endregion
