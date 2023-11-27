@@ -194,13 +194,13 @@ main {
     font-family: "Open Sans", sans-serif;
 
     h3 {
-      color: #333;
+      color: #666;
       width: 100%;
-      font-size: 16px;
+      font-size: 24px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       text-transform: uppercase;
     }
 
@@ -269,7 +269,14 @@ main {
         cursor: pointer;
       }
     }
-    .title-colors {
+
+    .title-size img {
+      display: none;
+    }
+
+    .title-colors,
+    .title-prices,
+    .title-sizes {
       margin-bottom: 14px;
       img {
         display: none;
@@ -277,15 +284,16 @@ main {
       @media (max-width: 768px) {
         display: flex;
         justify-content: space-between;
-        width: 150px;
+        width: 100%;
+
         img {
           display: block;
+          margin-right: 16px;
         }
       }
     }
 
-    .title-prices {
-      margin-top: 24px;
+    .range-price {
       margin-bottom: 14px;
     }
 
@@ -303,12 +311,14 @@ main {
     .tamanhos {
       justify-content: center;
       margin-top: 14px;
-      .tamanho {
+      .lista-container-tamanhos {
         margin-top: 24px;
-        display: flex;
         flex-wrap: wrap;
         gap: 8px;
         max-width: 160px;
+        @media (min-width: 768px) {
+          display: flex;
+        }
       }
 
       label {
@@ -320,6 +330,7 @@ main {
         opacity: 0.6;
         width: 32px;
         height: 32px;
+        box-sizing: border-box;
 
         .tamanhocheck {
           cursor: pointer;
@@ -361,40 +372,6 @@ main {
       }
     }
 
-    .btn-busca {
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-
-      .aplicar {
-        background-color: #00c0ee;
-        border: 1px solid #00c0ee;
-        color: #fff;
-        font-size: 14px;
-        border: none;
-        max-width: 160px;
-        width: 100%;
-        padding: 8px 31px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-
-      .limpar {
-        max-width: 160px;
-        width: 100%;
-        padding: 8px 31px;
-        font-size: 14px;
-        border: 1px solid #666;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-    }
     .action-btn-filter-mobile {
       display: none;
     }
@@ -620,12 +597,15 @@ footer {
         }
       }
       .btn-busca {
-        display: block;
+        display: none;
         text-align: center;
-        display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 20px;
+
+        &.show {
+          display: flex;
+        }
 
         .aplicar {
           background-color: #00c0ee;
@@ -647,6 +627,7 @@ footer {
           max-width: 160px;
           width: 100%;
           padding: 8px 31px;
+          margin-right: 16px;
           font-size: 14px;
           border: 1px solid #666;
           font-style: normal;
@@ -675,8 +656,27 @@ footer {
     .card-produto {
       max-width: calc(50% - 24px);
     }
+    .cores {
+      margin-bottom: 30px;
+      .lista-container-cores {
+        display: none;
+        &.open {
+          display: block;
+        }
+      }
+    }
 
-    .lista-container-cores {
+    .tamanhos {
+      margin-bottom: 30px;
+      .lista-container-tamanhos {
+        display: none;
+        &.open {
+          display: flex;
+        }
+      }
+    }
+
+    .lista-container-precos {
       display: none;
       &.open {
         display: block;

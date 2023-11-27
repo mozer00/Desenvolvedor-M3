@@ -179,6 +179,23 @@ function registrarEventos() {
   };
   adicionarEvento("#filterButton", openMobilefilter);
 
+  const verifyIfButtonsNeeded = () => {
+    let filtroAberto = false;
+    const listasFiltros = [
+      ".lista-container-cores",
+      ".lista-container-tamanhos",
+      ".lista-container-precos",
+    ];
+    for (const f of listasFiltros) {
+      const el = document.querySelector(f) as HTMLElement;
+      if (el.classList.contains("open")) {
+        filtroAberto = true;
+        break;
+      }
+    }
+    return filtroAberto;
+  };
+
   const openMobileorder = () => {
     (document.querySelector(".order-by-mobile") as HTMLElement).classList.add(
       "open"
@@ -200,11 +217,29 @@ function registrarEventos() {
 
   adicionarEvento(".limpar", limparFiltros);
 
-  adicionarEvento(".accordion-colors", () => {
+  const openOrHideButtonsMobileFilter = () => {
+    const buttonsMobile = document.querySelector(".btn-busca") as HTMLElement;
+    if (verifyIfButtonsNeeded()) {
+      buttonsMobile.classList.add("show");
+    } else {
+      buttonsMobile.classList.remove("show");
+    }
+  };
+  adicionarEvento(".title-colors", () => {
     document.querySelector(".lista-container-cores").classList.toggle("open");
+    openOrHideButtonsMobileFilter();
+  });
+  adicionarEvento(".title-sizes", () => {
+    document
+      .querySelector(".lista-container-tamanhos")
+      .classList.toggle("open");
+    openOrHideButtonsMobileFilter();
+  });
+  adicionarEvento(".title-prices", () => {
+    document.querySelector(".lista-container-precos").classList.toggle("open");
+    openOrHideButtonsMobileFilter();
   });
 
-  //#region all colors
   const list = document.querySelector(".lista-container-cores");
   const showMore = document.querySelector(".btn-all-colors");
   const items = list.getElementsByTagName("li");
@@ -221,7 +256,6 @@ function registrarEventos() {
     });
     (showMore as HTMLElement).style.display = "none";
   });
-  //#endregion
 }
 
 function limparFiltros() {
@@ -355,7 +389,6 @@ function renderizarProdutoHtml(produto: Product) {
   `;
 }
 
-//#region Carrinho
 const carrinho = {
   totalItens: 0,
 };
@@ -367,4 +400,3 @@ function adicionarAoCarrinho() {
   elementoCarrinho.innerText = carrinho.totalItens as unknown as string;
 }
 (window as any).adicionarAoCarrinho = adicionarAoCarrinho;
-//#endregion
