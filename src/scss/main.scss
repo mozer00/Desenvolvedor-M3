@@ -194,13 +194,13 @@ main {
     font-family: "Open Sans", sans-serif;
 
     h3 {
-      color: #666;
+      color: #333;
       width: 100%;
-      font-size: 24px;
+      font-size: 16px;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       text-transform: uppercase;
     }
 
@@ -291,6 +291,9 @@ main {
           margin-right: 16px;
         }
       }
+    }
+    .title-prices {
+      margin-top: 24px;
     }
 
     .range-price {
@@ -638,6 +641,16 @@ footer {
           color: #666;
           cursor: pointer;
         }
+      }
+      h3 {
+        color: #666;
+        width: 100%;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
       }
     }
     aside.show-aside {
